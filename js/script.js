@@ -10,6 +10,11 @@ const guestList = document.querySelector(".guest-list");
 const guestCount = document.querySelector(".attendance");
 // alert when guest list is full (not yet visible)
 const guestFull = document.querySelector(".alert");
+//Assign class which appears only when guest list is full
+const assignButton = document.querySelector(".assign");
+//Targets the list that will populate with the guest's name and assigned dish
+const assignedItems = document.querySelector(".assigned-items");
+
 
 //Click button to add people to list and clear box afterwards
 addGuestButton.addEventListener("click", function () {
@@ -42,6 +47,18 @@ const updateGuestCount = function () {
         guestFull.classList.remove("hide");
     }
 }
+
+const assignItems = function () {
+    const potluckItems = ["pasta salad", "fruit tart", "cucumber salad", "caprese", "chicken wings", "curry tofu", "rice", "potato salad", "hummus", "crudite", "bean burgers", "lentil salad"];
+    allGuests = document.querySelectorAll(".guest-list li");
+    for (let guest of allGuests) {
+        let randomPotluckIndex = Math.floor(Math.random() * potluckItems.length);
+        randomPotluckItem = randomPotluckIndex.push(potluckItems);
+        let listItem = createElement("li");
+        listItem.innerText = `${guest.innerText} is bringing ${randomPotluckItem}`;
+        assignedItems = append(listItem);
+    }
+};
 
 //Clear after subbing input then call back function within click event
 const clearInput = function () {
