@@ -73,8 +73,7 @@ const assignItems = function () {
     
     for (let guest of allGuests) {
         let randomPotluckIndex = Math.floor(Math.random() * potluckItems.length);
-        //let randomPotluckItem = randomPotluckIndex.push(potluckItems);
-        //For randomPotluckItem, add the item from the potluckItems array at the index position of randomPotluckIndex
+    //Produce a random number and use that to choose an item from the potluckItems array
         let randomPotluckItem = potluckItems[randomPotluckIndex];
         
         let listItem = document.createElement("li");
