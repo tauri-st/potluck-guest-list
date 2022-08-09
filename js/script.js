@@ -28,6 +28,11 @@ if (guest !== "") {
 }
 });
 
+//Clear after subbing input then call back function within click event
+const clearInput = function () {
+    guestInput.value = "";
+};
+
 //Create a list element, populate it, add it to the unordered list, add to click event
 const addToList = function (guest) {
     const listItem = document.createElement("li");
@@ -49,18 +54,37 @@ const updateGuestCount = function () {
 }
 
 const assignItems = function () {
-    const potluckItems = ["pasta salad", "fruit tart", "cucumber salad", "caprese", "chicken wings", "curry tofu", "rice", "potato salad", "hummus", "crudite", "bean burgers", "lentil salad"];
-    allGuests = document.querySelectorAll(".guest-list li");
+    const potluckItems = [
+        "pasta salad", 
+        "fruit tart", 
+        "cucumber salad", 
+        "caprese", 
+        "chicken wings", 
+        "curry tofu", 
+        "rice", 
+        "potato salad", 
+        "hummus", 
+        "crudite", 
+        "bean burgers", 
+        "lentil salad"
+    ];
+
+    const allGuests = document.querySelectorAll(".guest-list li");
+    
     for (let guest of allGuests) {
         let randomPotluckIndex = Math.floor(Math.random() * potluckItems.length);
-        randomPotluckItem = randomPotluckIndex.push(potluckItems);
-        let listItem = createElement("li");
-        listItem.innerText = `${guest.innerText} is bringing ${randomPotluckItem}`;
-        assignedItems = append(listItem);
+        //let randomPotluckItem = randomPotluckIndex.push(potluckItems);
+        //For randomPotluckItem, add the item from the potluckItems array at the index position of randomPotluckIndex
+        let randomPotluckItem = potluckItems[randomPotluckIndex];
+        
+        let listItem = document.createElement("li");
+        listItem.innerText = `${guest.innerText} is bringing ${randomPotluckItem}.`;
+        assignedItems.append(listItem);
+        potluckItems.splice(randomPotluckIndex, 1);
     }
 };
 
-//Clear after subbing input then call back function within click event
-const clearInput = function () {
-    guestInput.value = "";
-};
+assignButton.addEventListener("click", function () {
+    assignItems();
+    assignButton.disabled = true;
+});
